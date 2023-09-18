@@ -20,11 +20,18 @@ jobs:
           echo "$(date -u)" >> daily_commit.txt
           git add daily_commit.txt
           git commit -m "Daily commit: $(date -u)"
-          
+
+      - name: Debug info
+        run: |
+          if [ -n "${{ secrets.GH_PAT }}" ]; then
+            echo "GH_PAT is set."
+          else
+            echo "GH_PAT is not set."
+          fi
+
       - name: Push changes
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          git remote set-url origin https://github.com/kwaksh2319/example.git
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/kwaksh2319/example.git
           git push origin HEAD:main
-
