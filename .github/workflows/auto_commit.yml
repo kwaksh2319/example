@@ -23,7 +23,7 @@ jobs:
           
       - name: Push changes
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_PAT: ${{ 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}}
         run: |
           git remote set-url origin https://x-access-token:${GH_PAT}@github.com/kwaksh2319/example.git
           git push origin HEAD:master
