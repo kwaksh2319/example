@@ -25,5 +25,6 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/kwaksh2319/example.git
-          git push origin HEAD:master
+          git remote set-url origin https://github.com/kwaksh2319/example.git
+          git push origin HEAD:main
+
