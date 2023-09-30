@@ -1,33 +1,29 @@
+name: Scheduled Jobs
+
 on:
   schedule:
     - cron: '0 0 * * *'
 
 jobs:
-  commit:
+  test_schedule:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: Hello World
+        run: echo "Hello World"
+
+      - name: repository checkout
         uses: actions/checkout@v2
+        with:
+          repository: /kwaksh2319/example/tree/main/.github
+          token: ${{ secrets.GH_PAT }}
+          path: /example/tree/main/.github
 
-      - name: Set up Git
+      - name: Add date and push
         run: |
-          git config --global user.email "kwaksh2319@gmail.com"
-          git config --global user.name "kwaksh2319"
-
-      - name: Create commit
-        run: |
-          echo "$(date -u)" >> daily_commit.txt
-          git add daily_commit.txt
-          git commit -m "Daily commit: $(date -u)"
-
-      - name: Debug info
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          echo "GH_PAT value: $GH_PAT"
-
-      - name: Push changes
-        run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/kwaksh2319/example.git
-          git push origin HEAD:main
+          cd infra-study
+          date >> date.txt
+          git add .
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
+          git commit -am "Inject Date"
+          git push
