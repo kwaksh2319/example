@@ -14,7 +14,7 @@ jobs:
       - name: repository checkout
         uses: actions/checkout@v2
         with:
-          repository: /kwaksh2319/example
+          repository: kwaksh2319/example
           token: ${{ secrets.GH_PAT }}
           path: /example
 
