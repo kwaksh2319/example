@@ -14,9 +14,9 @@ jobs:
       - name: repository checkout
         uses: actions/checkout@v2
         with:
-          repository: kwaksh2319/example
+          repository: kwaksh2319/example/.github/workflows
           token: ${{ secrets.GH_PAT }}
-          path: /example
+          path: /example/.github/workflows
 
       - name: Add date and push
         run: |
