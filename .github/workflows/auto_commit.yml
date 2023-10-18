@@ -2,7 +2,7 @@ name: Scheduled Jobs
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * *' # Runs every day at midnight
 
 jobs:
   test_schedule:
@@ -11,18 +11,20 @@ jobs:
       - name: Hello World
         run: echo "Hello World"
 
-      - name: repository checkout
+      - name: Repository Checkout
         uses: actions/checkout@v2
         with:
-          repository: kwaksh2319/example/.github/workflows
-          path: /example/.github/workflows
+          repository: kwaksh2319/example
+          path: example
+          ref: main # Assuming you're using the main branch
 
-      - name: Add date and push
+      - name: Add Date and Push
         run: |
-          cd example
           date >> date.txt
           git add .
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
           git commit -am "Inject Date"
-          git push
+          git push origin main # Specify the branch here
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
