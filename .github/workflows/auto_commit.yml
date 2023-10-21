@@ -20,11 +20,12 @@ jobs:
 
       - name: Add Date and Push
         run: |
+          cd example
           date >> date.txt
-          git add .
+          git add date.txt
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
-          git commit -am "Inject Date"
+          git commit -m "Inject Date"
           git push origin main # Specify the branch here
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
