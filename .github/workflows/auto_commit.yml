@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: kwaksh2319/example
-          token: ${{ secrets.MY_GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
           path: example
 
       - name: Add date and push
